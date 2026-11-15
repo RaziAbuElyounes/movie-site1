@@ -1,11 +1,24 @@
 import "./MovieCard.css";
+import { useState } from "react";
 
 function MovieCard({ title, year, genre, rating, poster, available, duration}) {
+  const [liked, setLiked] = useState(false);
+  const [count, setCount] = useState(0);
+  function handleLike() {
+    setLiked(!liked);
+ console.log("liked:", liked); 
+
+}
+
   return (
     <article className="movie-card">
+      <button onClick={() => setCount(count + 1)}>{count}</button>
       <div className="movie-card__poster">
         <img src={poster} alt={title} />
         {available && <span className="movie-card__badge">זמין לצפייה</span>}
+        <button className="movie-card__like" onClick={handleLike}>
+          {liked ? "♥" : "♡"}
+        </button>
       </div>
       <div className="movie-card__body">
         <h3 className="movie-card__title">{title}</h3>
