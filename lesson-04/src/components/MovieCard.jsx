@@ -4,6 +4,17 @@ import { useState } from "react";
 function MovieCard({ title, year, genre, rating, poster, available, duration}) {
   const [liked, setLiked] = useState(false);
   const [count, setCount] = useState(0);
+  //forStar
+  const [userRating, setUserRating] = useState(0);
+  const handleStar = (starNumber) => {
+    if(starNumber === userRating){
+      setUserRating(0);
+    }
+    else{
+      setUserRating(starNumber);
+    }
+  };
+  //--------
   function handleLike() {
     setLiked(!liked);
  console.log("liked:", liked); 
@@ -28,6 +39,17 @@ function MovieCard({ title, year, genre, rating, poster, available, duration}) {
         <div className="movie-card__footer">
           <span className="movie-card__genre">{genre}</span>
           <span className="movie-card__rating">★ {rating}</span>
+        </div>
+        <div className="movie-card__stars">
+          {available && <span className="rating-movie">הדירוג שלי</span>}
+          <div className="movie-card__user-rating">
+            {[1,2,3,4,5].map(star => (<button key={star}
+                                              type="button"
+                                              className="movie-card__star-btn"
+                                              onClick={() => handleStar(star)}>
+                                                {star <= userRating ? "★" : "☆"}
+                                              </button>))}
+          </div>
         </div>
       </div>
     </article>
