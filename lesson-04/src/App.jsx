@@ -29,6 +29,11 @@ function App() {
     setOnlyAvailable(!onlyAvailable);
   }
 
+  function handleGanreSelect(genre) {
+    setSelectedGenre(genre);
+    setVisibleCount(4);
+  }
+
   function showMore() {
     setVisibleCount(visibleCount + 4);
   }
@@ -56,7 +61,7 @@ function App() {
 
           <button
             className={selectedGenre === "all" ? "btn btn--active" : "btn"}
-            onClick={() => setSelectedGenre("all")}
+            onClick={() => handleGanreSelect("all")}
           >
             הכל
           </button>
@@ -64,7 +69,7 @@ function App() {
             <button
               key={genre}
               className={selectedGenre === genre ? "btn btn--active" : "btn"}
-              onClick={() => setSelectedGenre(genre)}
+              onClick={() => handleGanreSelect(genre)}
             >
               {genre}
             </button>
